@@ -21,6 +21,7 @@ sealed trait Piece(pos: Position, color: PieceColor){
     def validateMove(next: Position) = moveLogic(next) 
         && next.inBoard 
         && pos.distance(next) != (0,0)
+        //TODO: Add line-of-sight check
 }
 
 case class King(pos: Position, color: PieceColor) extends Piece(pos, color) {
@@ -28,7 +29,7 @@ case class King(pos: Position, color: PieceColor) extends Piece(pos, color) {
         case (0, 1) => true
         case (1, 0) => true
         case (1, 1) => true
-        // add castle
+        // TODO: add castle
         case _ => false
     }
 }
@@ -59,8 +60,5 @@ case class Knight(pos: Position, color: PieceColor) extends Piece(pos, color){
     }
 }
 case class Pawn(pos: Position, color: PieceColor) extends Piece(pos, color){
-    def moveLogic(next: Position) = {
-        if(next.column != pos.column) false
-        else true
-    }
+    def moveLogic(next: Position) = ???
 }
